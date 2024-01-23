@@ -17,7 +17,7 @@ export class CustomersComponent implements OnInit{
   private customerService = inject(CustomerService);
 
   ngOnInit(): void {
-    this.customerService.getClientes().subscribe(
+    this.customerService.getCustomers().subscribe(
       data => this.customers = data
       );
   }

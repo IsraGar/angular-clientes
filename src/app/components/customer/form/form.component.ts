@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Customer } from '../../entity/customer';
+import { CustomerService } from '../../../services/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -11,10 +13,14 @@ import { Customer } from '../../entity/customer';
   styleUrl: './form.component.css'
 })
 export class FormComponent {
+  private customerService = inject(CustomerService);
+  private router = inject(Router);
   customer: Customer = new Customer();
   title: string = 'Create customer';
-  create(): void{
-    console.log('Click this button');
-    console.log(this.customer);    
+
+  createCustomer(): void{
+    this.customerService.createCustomer(this.customer).subscribe(response => {
+      this.router.navigate(['/customers']);
+    })
   }
 }

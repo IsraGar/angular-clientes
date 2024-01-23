@@ -1,4 +1,4 @@
-<div class="card mt-3" style="width: 100%">
+<div class="card mt-3 mb-4" style="width: 100%">
     <div class="card-header">Customers</div>
     <div class="card-body">
       <h5 class="card-title">Customer list</h5>
@@ -23,7 +23,7 @@
             <td>{{ customer.name }}</td>
             <td>{{ customer.lastname }}</td>
             <td>{{ customer.email }}</td>
-            <td>{{ customer.createdAt }}</td>
+            <td>{{ customer.createdAt | date:'yyyy-MM-dd'}}</td>
           </tr>
         </tbody>
       </table>
