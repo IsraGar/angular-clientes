@@ -1,0 +1,7 @@
+.nav-item :hover{
+    cursor: pointer;
+}
+
+.active-link{
+    font-size: xx-large;
+}
