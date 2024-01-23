@@ -1,7 +1,12 @@
 <div class="card mt-3" style="width: 100%">
-    <div class="card-header">Clientes</div>
+    <div class="card-header">Customers</div>
     <div class="card-body">
-      <h5 class="card-title">Listado de clientes</h5>
+      <h5 class="card-title">Customer list</h5>
+
+      <div class="my-2 text-left">
+        <button class="btn btn-primary btn-rounded" [routerLink]="['/customers/create']">Create ➕</button>
+      </div>
+      
       <table class="table table-hover">
         <thead>
           <tr>
