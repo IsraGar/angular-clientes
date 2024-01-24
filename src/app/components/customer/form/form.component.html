@@ -2,30 +2,54 @@
     <div class="card-header">Customers</div>
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
-        <form>
+        <form #customerForm="ngForm">
             <div class="form-group row my-2">
                 <label for="name" class="col-form-label col-sm-2">Name</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="customer.name" name="name">
+                    <input type="text" class="form-control" [(ngModel)]="customer.name" name="name" required minlength="3" #name="ngModel">
+                    <div class="error-message" *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <div *ngIf="name.errors.required">
+                            *Field required
+                        </div>
+                        <div *ngIf="name.errors.minlength">
+                            *Minimum length is 3
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row my-2">
                 <label for="lastname" class="col-form-label col-sm-2">Last name</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="customer.lastname" name="lastname">
+                    <input type="text" class="form-control" [(ngModel)]="customer.lastname" name="lastname" required minlength="3" #lastname="ngModel">
+                    <div class="error-message" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+                        <div *ngIf="lastname.errors.required">
+                            *Field required
+                        </div>
+                        <div *ngIf="lastname.errors.minlength">
+                            *Minimum length is 3
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row my-2">
                 <label for="email" class="col-form-label col-sm-2">Email</label>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" [(ngModel)]="customer.email" name="email">
+                    <input type="email" class="form-control" [(ngModel)]="customer.email" name="email" required email #email="ngModel">
+                    <div class="error-message" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email.errors.required">
+                            *Field required
+                        </div>
+                        <div *ngIf="email.errors.email">
+                            *Invalid email format
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form control row">
                 <div class="col-sm-6">
                     <button class="btn btn-danger mx-2" role="button" [routerLink]="['/customers']">Cancel</button>
-                    <button class="btn btn-primary" role="button" *ngIf="this.id === undefined" (click)="createCustomer()">Create</button>
-                    <button class="btn btn-primary" role="button" *ngIf="this.id" (click)="updateCustomer()">Update</button>
+                    <button class="btn btn-primary" role="button" [disabled]="customerForm.form.invalid" *ngIf="this.id === undefined" (click)="createCustomer()">Create</button>
+                    <button class="btn btn-primary" role="button" [disabled]="customerForm.form.invalid" *ngIf="this.id" (click)="updateCustomer()">Update</button>
                 </div>
             </div>
         </form>
