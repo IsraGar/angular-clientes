@@ -39,6 +39,11 @@ export class CustomerService {
   createCustomer(customer: Customer): Observable<Customer>{    
     return this.http.post<Customer>(`${this.urlEndPoint}create`, customer, {headers: this.httpHeaders}).pipe(
       catchError(e => {
+
+        if(e.status == 400){
+          return throwError(e);
+        }
+
         console.log(e.error.message);        
         Swal.fire({
           title: e.error.message,
@@ -54,6 +59,11 @@ export class CustomerService {
   updateCustomer(customer: Customer): Observable<Customer>{
     return this.http.put<Customer>(`${this.urlEndPoint}update/${customer.id}`, customer, {headers: this.httpHeaders}).pipe(
       catchError(e => {
+
+        if(e.status == 400){
+          return throwError(e);
+        }
+
         console.log(e.error.message);        
         Swal.fire({
           title: e.error.message,

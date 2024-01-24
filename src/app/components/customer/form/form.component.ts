@@ -21,6 +21,7 @@ export class FormComponent implements OnInit{
   customer: Customer = new Customer();
   title: string = 'Create customer';
   id: number;
+  errors: string[];
 
   ngOnInit(): void {
     this.getCustomer();     
@@ -37,7 +38,11 @@ export class FormComponent implements OnInit{
         });
         this.router.navigate(['/customers']);
       }      
-    })
+    }, err => {
+      this.errors = err.error.errors as string[];
+      console.log(err.status);    
+      console.log(err.error.errors);
+    });
   }
 
   getCustomer(): void{
@@ -58,6 +63,10 @@ export class FormComponent implements OnInit{
         confirmButtonText: 'OK'
       });
       this.router.navigate(['/customers']);
+    }, err => {
+      this.errors = err.error.errors as string[];
+      console.log(err.status);
+      console.log(err.error.errors);
     });
   }
 
