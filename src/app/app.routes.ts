@@ -6,4 +6,5 @@ export const routes: Routes = [
     { path: '', redirectTo: '/customers', pathMatch: 'full' },
     { path: 'customers', component: CustomersComponent },
     { path: 'customers/create', component: FormComponent },
+    { path: 'customers/create/:id', component: FormComponent },
 ];

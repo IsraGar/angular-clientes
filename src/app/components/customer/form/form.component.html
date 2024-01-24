@@ -2,7 +2,7 @@
     <div class="card-header">Customers</div>
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
-        <form (ngSubmit)="createCustomer()">
+        <form>
             <div class="form-group row my-2">
                 <label for="name" class="col-form-label col-sm-2">Name</label>
                 <div class="col-sm-6">
@@ -24,7 +24,8 @@
             <div class="form control row">
                 <div class="col-sm-6">
                     <button class="btn btn-danger mx-2" role="button" [routerLink]="['/customers']">Cancel</button>
-                    <button class="btn btn-primary" role="button">Create</button>
+                    <button class="btn btn-primary" role="button" *ngIf="this.id === undefined" (click)="createCustomer()">Create</button>
+                    <button class="btn btn-primary" role="button" *ngIf="this.id" (click)="updateCustomer()">Update</button>
                 </div>
             </div>
         </form>
