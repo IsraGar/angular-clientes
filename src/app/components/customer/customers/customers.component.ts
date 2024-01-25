@@ -1,10 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, SimpleChanges, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {CommonModule} from '@angular/common';
 import { Customer } from '../../entity/customer';
 import { CustomerService } from '../../../services/customer.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -17,7 +16,6 @@ export class CustomersComponent implements OnInit{
   
   customers: Customer[];
   private customerService = inject(CustomerService);
-  private router = inject(Router);
 
   ngOnInit(): void {
     this.getCustomers();
@@ -25,7 +23,7 @@ export class CustomersComponent implements OnInit{
 
   getCustomers(){
     this.customerService.getCustomers().subscribe(
-      data => this.customers = data
+      data => this.customers = data 
     );
   }
 
